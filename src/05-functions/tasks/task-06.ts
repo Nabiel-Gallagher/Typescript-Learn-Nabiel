@@ -26,21 +26,58 @@ const sales = [
 ];
 
 function calculateTotalSales(sales: number[]): number {
+  let totalSales: number = 0
 
+  for (let i = 0; i < sales.length; i++) {
+    totalSales += sales[i]
+  }
+  return totalSales
 }
 
 function findHighestTransaction(sales: number[]): number {
+  let transaksiTertinggi: number = 0 
 
+  for (let i = 0; i < sales.length; i++) {
+    if (sales[i] > transaksiTertinggi) {
+      transaksiTertinggi += sales[i]
+    }
+  }
+  return transaksiTertinggi
 }
 
 function findLowestTransaction(sales: number[]): number {
+  let transaksiTerendah: number = 0
 
+  for (let i = 0; i < sales.length; i++) {
+    if (sales[i] < transaksiTerendah) {
+      transaksiTerendah += sales[i]
+    }
+  }
+  return transaksiTerendah
 }
 
 function calculateAverageSale(sales: number[]): number {
+  let total: number = 0
 
+  for (let i = 0; i < sales.length; i++) {
+    total += sales[i]
+  }
+  return total / sales.length
 }
 
 function countLargeTransactions(sales: number[], minimumAmount: number): number {
+  let hitTransaksiTerbesar: number = 0
 
+  for (let i = 0; i < sales.length; i++) {
+    if (sales[i] > minimumAmount) {
+      hitTransaksiTerbesar++
+    }
+  }
+  return hitTransaksiTerbesar
 }
+
+console.log("Total Penjualan : " + calculateTotalSales(sales))
+console.log("Transaksi Tertinggi : " + findHighestTransaction(sales))
+console.log("Transaksi Terendah : " + findLowestTransaction(sales))
+console.log("Rata Rata Penjualan : " + calculateAverageSale(sales))
+console.log("Jumlah Transaksi diatas 500000 : " + countLargeTransactions(sales, 500000))

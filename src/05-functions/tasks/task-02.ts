@@ -21,3 +21,15 @@
  * 3. Display the bonus result inside the function.
  * 4. Call the function for every employee.
  */
+
+function showBonusStatus(namaKaryawan: string, scoreKinerja: number): void {
+  if (scoreKinerja >= 85) {
+    console.log("Bonus Disetujui untuk " + namaKaryawan);
+  } else {
+    console.log("Bonus Tidak Disetujui untuk " + namaKaryawan);
+  }
+}
+
+showBonusStatus("John Cena", 92);
+showBonusStatus("Undertaker", 76);
+showBonusStatus("Rey Mysterio", 88);

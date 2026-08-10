@@ -20,3 +20,25 @@ const attendances = [
     { name: "Dimas", present: true },
     { name: "Eka", present: false }
 ];
+
+function printAttendanceReport (attendance: {name:string; present:boolean} []): void {
+    let totalHadir: number = 0
+    let totalAbsen: number = 0
+    let namaNamaYangTidakHadir: string = ""
+
+    for (let i = 0; i < attendance.length; i++) {
+        let kehadiran = attendance[i]
+        if (kehadiran.present) {
+            totalHadir++
+        } else {
+            totalAbsen++
+            namaNamaYangTidakHadir += kehadiran.name + " "
+        }
+    } 
+
+    console.log("Total Hadir: " + totalHadir)
+    console.log("Total Absen: " + totalAbsen)
+    console.log("Nama yang tidak hadir: " + namaNamaYangTidakHadir)
+}
+
+printAttendanceReport(attendances)
