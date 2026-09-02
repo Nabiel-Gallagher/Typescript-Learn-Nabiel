@@ -54,3 +54,39 @@ const submissions = [
         score: 96
     }
 ];
+
+function jumlahSiswaAktif() {
+    return submissions.length
+}
+
+function tugasDiserahkan() {
+    let jumlah = 0;
+
+    for (let i = 0; i < submissions.length; i++) {
+        if (submissions[i].submitted == true) {
+            jumlah++
+        }
+    }
+    return jumlah
+}
+
+function tugasHilang() {
+    let hilang = 0;
+
+    for (let i = 0; i < submissions.length; i++) {
+        if (!submissions[i].submitted) {
+            hilang++
+        }
+    }
+    return hilang
+}
+
+function siswaLulus () {
+    let Lulus = 0;
+
+    for (let i = 0; i < submissions.length; i++) {
+        if (submissions[i].score >= 75 ) {
+            Lulus++
+        }
+    }
+}

@@ -21,10 +21,18 @@ const attendances = [
     { name: "Eka", present: false }
 ];
 
+
+function hitungPresentase (preset: number, total:number): number {
+    return (preset / total) * 100
+}
+
+
 function printAttendanceReport (attendance: {name:string; present:boolean} []): void {
     let totalHadir: number = 0
     let totalAbsen: number = 0
     let namaNamaYangTidakHadir: string = ""
+
+    let totalSiswa: number = attendance.length
 
     for (let i = 0; i < attendance.length; i++) {
         let kehadiran = attendance[i]
@@ -36,9 +44,15 @@ function printAttendanceReport (attendance: {name:string; present:boolean} []): 
         }
     } 
 
+    let presentaseHadir: number = hitungPresentase(totalHadir, totalSiswa)
+    let presentTidakHadir: number = hitungPresentase(totalAbsen, totalSiswa) 
+
     console.log("Total Hadir: " + totalHadir)
     console.log("Total Absen: " + totalAbsen)
     console.log("Nama yang tidak hadir: " + namaNamaYangTidakHadir)
+    console.log("Total Siswa: " + totalSiswa)
+    console.log("Presentase Hadir: " + presentaseHadir)
+    console.log("Presentase Tidak Hadir: " + presentTidakHadir)
 }
 
 printAttendanceReport(attendances)
