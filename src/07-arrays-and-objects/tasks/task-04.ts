@@ -28,3 +28,21 @@ const cart = [
         quantity: 1,
     },
 ];
+
+const subtotal = cart.filter(cart => cart.quantity > 0).reduce((sum, cart) => sum + cart.price * cart.quantity, 0)
+
+let diskon = 0
+
+if (subtotal >= 3000000) {
+    diskon = 10/100
+} else if (subtotal >= 2000000) {
+    diskon = 5/100
+}
+
+let totalAkhir = subtotal - (subtotal * diskon)
+
+const produkMahal = cart.filter(cart => cart.price > 1000000)
+
+console.log(subtotal)
+console.log(totalAkhir)
+console.log(produkMahal)

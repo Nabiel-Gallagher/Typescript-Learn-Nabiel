@@ -24,3 +24,31 @@ const borrowings = [
     { student: "Eka", bookId: 1, days: 4 },
     { student: "Andi", bookId: 3, days: 8 },
 ];
+
+const pinjamanAndi = borrowings.filter(pinjaman => pinjaman.student === "Andi")
+
+const informasi = borrowings.map(pinjaman => {const buku = books.find(book => book.id === pinjaman.bookId)
+    return {
+        student: pinjaman.student,
+        days: pinjaman.days,
+        bookTittle: buku?.title,
+        bookCategory: buku?.category
+    }
+})
+
+const peminjamProgramming = informasi.filter(pinjaman => pinjaman.bookCategory === "Programming")
+
+const totalPeminjaman = borrowings.length
+
+const totalDurasiPinjam = borrowings.reduce((sum, borrowings) => sum + borrowings.days, 0)
+const rataRataDurasiPinjam = totalDurasiPinjam / totalPeminjaman
+
+const pinjamLebih7Hari = borrowings.filter( borrowings => borrowings.days > 7)
+
+console.log(pinjamanAndi)
+console.log(informasi)
+console.log(peminjamProgramming)
+console.log(totalDurasiPinjam)
+console.log(rataRataDurasiPinjam)
+console.log(pinjamLebih7Hari)
+

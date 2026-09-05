@@ -26,3 +26,25 @@ const students = [
 ];
 
 const correctAnswers = ["A", "B", "C", "A", "B"];
+
+const score = students.map(student => {const totalBenar = student.answers.filter((jawaban, index) => jawaban === correctAnswers[index]).length
+    return {
+        id: student.id,
+        name: student.name,
+        totalBenar,
+        score: totalBenar * 20
+        
+    }
+})
+
+const lulus = score.filter(students => students.score > 70)
+
+const nilaiTertinggi = score.reduce((tertinggi, current) => current.score > tertinggi.score ? current : tertinggi)
+
+const total = score.reduce((sum, student) => sum + student.score, 0)
+const rataRata = total / students.length
+
+console.log(score)
+console.log(lulus)
+console.log(nilaiTertinggi)
+console.log(rataRata)
