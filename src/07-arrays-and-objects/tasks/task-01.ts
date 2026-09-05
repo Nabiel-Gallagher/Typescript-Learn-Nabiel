@@ -22,3 +22,18 @@ const students = [
   { name: "Deni", score: 74 },
   { name: "Eka", score: 55 },
 ];
+
+const names = students.map(students => students.name)
+
+const lulus = students.filter(students => students.score >= 70)
+
+const citra = students.find(students => students.name === "Citra")
+
+const total = students.reduce((sum,students) => sum + students.score, 0)
+const rataRata = total / students.length
+
+console.log(names)
+console.log(lulus)
+console.log(citra)
+console.log("Rata Rata =", rataRata)
+

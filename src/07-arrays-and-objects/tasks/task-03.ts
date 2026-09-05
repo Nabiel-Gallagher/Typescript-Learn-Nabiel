@@ -23,3 +23,24 @@ const attendance = [
     { studentId: 3, status: "present" },
     { studentId: 4, status: "late" },
 ];
+
+const hadir = students.filter(student => {const kehadiran = attendance.find(attendance => attendance.studentId === student.id)
+    return kehadiran?.status === "present"
+}).map(student => student.name)
+
+const tidakHadir = students.filter(student => {const kehadiran = attendance.find(attendance => attendance.studentId === student.id)
+    return kehadiran?.status === "absent"
+}).map(student => student.name)
+
+const terlambat = students.filter(student => {const kehadiran = attendance.find(attendance => attendance.studentId === student.id)
+    return kehadiran?.status === "late"
+}).map(student => student.name)
+
+const anu = students.map(student => {const kehadiran = attendance.find(attendance => attendance.studentId === student.id)!
+    return {name : student.name, status : kehadiran.status}
+})
+
+console.log(hadir)
+console.log(tidakHadir)
+console.log(terlambat)
+console.log(anu)

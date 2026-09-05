@@ -45,3 +45,11 @@ const products = [
         stock: 3,
     },
 ];
+
+const produkTersedia = products.filter(products => products.stock > 0)
+const namaProduk = products.map(products => products.name)
+const total = produkTersedia.reduce((sum, products) => sum +products.price * products.stock, 0)
+
+console.log("Produk Tersedia =", produkTersedia)
+console.log(namaProduk)
+console.log("Total Barang =", total)
