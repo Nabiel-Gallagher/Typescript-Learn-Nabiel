@@ -29,3 +29,37 @@
  *   - isAvailable()
  * - implement class with at least 2 objects
  */
+
+class buku {
+    private statusPeminjaman : string
+    isbn : number;
+    judul : string;
+    pengarang : string;
+    jumalahHalaman: number;
+
+    constructor(isbn: number, judul: string, pengarang: string, jumlahHalaman: number) {
+        this.isbn = isbn;
+        this.judul = judul;
+        this.pengarang = pengarang;
+        this.jumalahHalaman = jumlahHalaman;
+        this.statusPeminjaman = "Tersedia"
+    }
+
+    meminjam(): void {
+        if (this.statusPeminjaman === "Tersedia") {
+        this.statusPeminjaman = "Meminjam"
+        console.log(this.judul + "Berhasil Dipinjam")
+    } else {
+        console.log(this.judul + "Buku Sedang Dipinjam")
+    }
+   }
+
+    returnBook(): void {
+        if(this.statusPeminjaman === "Meminjam") {
+            this.statusPeminjaman = "Tersedia"
+            console.log(this.judul + "Berhasil Dikembalikan")
+        } else {
+            console.log(this.judul + "Masih Tersedia")
+        }
+    }  
+  } 
