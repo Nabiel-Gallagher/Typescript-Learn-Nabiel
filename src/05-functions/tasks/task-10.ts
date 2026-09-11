@@ -92,3 +92,73 @@ const enrollments = [
         duration: 20
     }
 ];
+
+function calculateCompletionStatistics(enrollments: any[]): any {
+    const totalEnrollments = enrollments.length;
+    const completedEnrollments = enrollments.filter(e => e.completed).length;
+    const incompleteEnrollments = totalEnrollments - completedEnrollments;
+    const completionPercentage = (completedEnrollments / totalEnrollments) * 100;
+
+    return {
+        totalEnrollments,
+        completedEnrollments,
+        incompleteEnrollments,
+        completionPercentage
+    };
+}
+
+function calculateAcademicStatistics(enrollments: any[]): any {
+    const scores = enrollments.map(e => e.score);
+    const highestScore = Math.max(...scores);
+    const lowestScore = Math.min(...scores);
+    const averageScore = scores.reduce((a, b) => a + b, 0) / scores.length;
+    const passingStudents = enrollments.filter(e => e.score >= 75).length;
+
+    return {
+        highestScore,
+        lowestScore,
+        averageScore,
+        passingStudents
+    };
+}
+
+function calculateCourseStatistics(enrollments: any[]): any {
+    const courseStats: any = {};
+    for (const enrollment of enrollments) {
+        const course = enrollment.course;
+        if (!courseStats[course]) {
+            courseStats[course] = {
+                totalEnrollments: 0,
+                completedEnrollments: 0,
+                averageDuration: 0
+            };
+        }
+        courseStats[course].totalEnrollments++;
+        if (enrollment.completed) {
+            courseStats[course].completedEnrollments++;
+        }
+    }
+    return courseStats;
+}
+
+function calculateLearningHours(enrollments: any[]): number {
+    return enrollments.reduce((total, e) => total + e.duration, 0);
+}
+
+function calculateAverageLearningDuration(enrollments: any[]): number {
+    const totalHours = calculateLearningHours(enrollments);
+    return totalHours / enrollments.length;
+}
+
+function printLearningReport(): void {
+    console.log("Completion Statistics:");
+    console.log(calculateCompletionStatistics(enrollments));
+    console.log("Academic Statistics:");
+    console.log(calculateAcademicStatistics(enrollments));
+    console.log("Course Statistics:");
+    console.log(calculateCourseStatistics(enrollments));
+    console.log("Total Learning Hours: " + calculateLearningHours(enrollments));
+    console.log("Average Learning Duration: " + calculateAverageLearningDuration(enrollments));
+}
+
+printLearningReport();

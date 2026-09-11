@@ -31,3 +31,30 @@ const hargaListrikKwh: number = 1650
 const panlerTerpasang: boolean = true
 const modeHemat: boolean = true
 
+const penggunaan = meterArus - meterSebelumnya;
+
+const tagihan = penggunaan * hargaListrikKwh;
+
+let diskon = 0;
+
+if (panlerTerpasang) {
+    diskon = diskon + 0.20;
+}
+
+if (modeHemat) {
+    diskon = diskon + 0.05;
+}
+
+const potongan = tagihan * diskon;
+const finalBill = tagihan - potongan;
+
+let greenEnergy = false;
+
+if (panlerTerpasang && penggunaan < 300 && modeHemat) {
+    greenEnergy = true;
+}
+
+console.log("Total Energy Consumption :", penggunaan, "kWh");
+console.log("Electricity Bill         :", tagihan);
+console.log("Final Bill               :", finalBill);
+console.log("Green Energy Program     :", greenEnergy);

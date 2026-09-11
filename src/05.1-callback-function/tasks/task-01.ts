@@ -9,18 +9,22 @@ function registerStudent(
     studentName: string,
     callback: (name: string) => void
 ): void {
-    console.log(`Registering ${studentName}...`);
+    console.log("Registering " + studentName + "...");
 
     callback(studentName);
 }
 
-/** The school provides the callback: */
 function showRegistrationMessage(name: string): void {
-    console.log(`${name} successfully registered.`);
+    console.log(name + " successfully registered.");
 }
 
-/** show registration message */
-registerStudent(`John Cena`, showRegistrationMessage)
+registerStudent("John Cena", showRegistrationMessage);
+
+function showWelcomeMessage(name: string): void {
+    console.log("Welcome to the school, " + name + "!");
+}
+
+registerStudent("John Cena", showWelcomeMessage);
 
 /** 
  * TASK:

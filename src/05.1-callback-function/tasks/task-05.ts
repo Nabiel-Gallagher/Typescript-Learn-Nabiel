@@ -53,33 +53,65 @@ const orders: Order[] = [
 
 type SHIPPING_CATEGORY = "FREE SHIPPING" | "STANDARD SHIPPING" | "ECONOMY SHIPPING"
 type ORDER_STATUS = "PAID" | "UNPAID"
-type PaymentStatusOrder = Order & { status: ORDER_STATUS }
-type ShippingCategoryOrder = Order & { shippingStatus: SHIPPING_CATEGORY }
 
-function getPaymentStatus(selectedOrder: Order): PaymentStatusOrder {
-    // implement to determine payment status order
-    // this function return order data within status or order
-    return;
+type PaymentStatusOrder = Order & {
+    status: ORDER_STATUS
 }
 
+type ShippingCategoryOrder = Order & {
+    shippingStatus: SHIPPING_CATEGORY
+}
+
+function getPaymentStatus(selectedOrder: Order): PaymentStatusOrder {
+    let status: ORDER_STATUS
+
+    if (selectedOrder.paid === true) {
+        status = "PAID"
+    } else {
+        status = "UNPAID"
+    }
+
+    return {
+        ...selectedOrder,
+        status: status
+    }
+}
 
 function getShippingCategory(selectedOrder: Order): ShippingCategoryOrder {
-    // implement to determine shipping category of order
-    // this function return order data within shipping cateogory
-    return;
+    let shippingStatus: SHIPPING_CATEGORY
+
+    if (selectedOrder.total >= 1500000) {
+        shippingStatus = "FREE SHIPPING"
+    } else if (selectedOrder.total >= 500000) {
+        shippingStatus = "STANDARD SHIPPING"
+    } else {
+        shippingStatus = "ECONOMY SHIPPING"
+    }
+
+    return {
+        ...selectedOrder,
+        shippingStatus: shippingStatus
+    }
 }
 
 function processOrder<T>(
     arr: Order[],
-    callback: (order: Order) => T): T[] {
-    // implement for callback
-    return;
+    callback: (order: Order) => T
+): T[] {
+    const result: T[] = []
+
+    for (const order of arr) {
+        result.push(callback(order))
+    }
+
+    return result
 }
 
 const orderWithPaymentStatus = processOrder(orders, getPaymentStatus)
 const orderWithShippingCategory = processOrder(orders, getShippingCategory)
 
-console.log(`====== ORDER WITH PAYMENT STATUS ======`);
+console.log(`====== ORDER WITH PAYMENT STATUS ======`)
 console.log({ orders: orderWithPaymentStatus })
-console.log(`====== ORDER WITH SHIPPING CATEGORY ======`);
+
+console.log(`====== ORDER WITH SHIPPING CATEGORY ======`)
 console.log({ orders: orderWithShippingCategory })

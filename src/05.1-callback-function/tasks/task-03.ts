@@ -22,28 +22,35 @@ const products = [
  * Instead of creating a separate loop for every operation, the developer creates a reusable processing function.
  */
 
-function prosesProduk (products: {name : string, price : number}[], callback: (name: string, price: number) => void): void{
+function prosesProduk(
+    products: { name: string, price: number }[],
+    callback: (name: string, price: number) => void
+): void {
     for (let i = 0; i < products.length; i++) {
-        callback(name, price)
+        callback(products[i].name, products[i].price);
     }
-
 }
 
-function displayProduct (name : string, price : number) {
-    console.log(`name: ${name} price ${price}`)
+function displayProduct(name: string, price: number) {
+    console.log(name + " - Rp" + price);
 }
 
-function enxpensiveProduct (name : string, price : number) {
+function enxpensiveProduct(name: string, price: number) {
     if (price > 1000000) {
-        console.log(`name: ${name} price ${price}`)
+        console.log(name + " - Rp" + price);
     }
 }
 
-function productLimtus (name : string, price : number) {
+function productLimtus(name: string, price: number) {
     if (price > 500000) {
-        let diskon = price * 10 / 100
-        let hargaAkhir = price - diskon
+        let diskon = price * 10 / 100;
+        let hargaAkhir = price - diskon;
 
-        console.log(name + " - Rp" + hargaAkhir)
+        console.log(name + " - Rp" + hargaAkhir);
     }
 }
+
+
+prosesProduk(products, displayProduct);
+prosesProduk(products, enxpensiveProduct);
+prosesProduk(products, productLimtus);

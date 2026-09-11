@@ -34,3 +34,48 @@
  * - Free shipping eligibility
 
  */
+
+const keyboard: number = 850000;
+const mouse: number = 275000;
+const jumlahMouse: number = 2;
+const stand: number = 420000;
+
+const voucher: number = 100000;
+const premium: boolean = true;
+const pajak: number = 0.11;
+
+
+const subtotal = keyboard + (mouse * jumlahMouse) + stand;
+
+let diskon = 0;
+
+if (premium) {
+    diskon = subtotal * 0.10;
+}
+
+const setelahDiskon = subtotal - diskon;
+
+const setelahVoucher = setelahDiskon - voucher;
+
+const sebelumPajak = setelahVoucher;
+
+const vat = sebelumPajak * pajak;
+
+const finalPayment = sebelumPajak + vat;
+
+const rewardPoints = Math.floor(sebelumPajak / 50000);
+
+let freeShipping = false;
+
+if (premium || sebelumPajak > 1500000) {
+    freeShipping = true;
+}
+
+console.log("Product Subtotal      :", subtotal);
+console.log("Membership Discount   :", diskon);
+console.log("Voucher Deduction     :", voucher);
+console.log("Payment Before Tax    :", sebelumPajak);
+console.log("VAT                   :", vat);
+console.log("Final Payment         :", finalPayment);
+console.log("Reward Points         :", rewardPoints);
+console.log("Free Shipping         :", freeShipping);
